@@ -58,7 +58,7 @@ body::before {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--container-pad);
-  width: 80%;
+  width: 95%;
 }
 .accent { color: var(--clr-accent); }
 .tag {
