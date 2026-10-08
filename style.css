@@ -1197,3 +1197,215 @@ body::before {
 @media print {
   .topbar, .nav, .marquee-wrap, .social-strip, .newsletter { display: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   PRODUCT IMAGE SLIDER  (Our Catalogue only)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Wrapper — replaces .product-img on slider cards */
+.product-img-slider {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #111;
+}
+
+/* Slide track */
+.ps-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.42s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+}
+
+/* Each slide */
+.ps-slide {
+  min-width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.ps-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+.ps-slide .img-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: unset;
+}
+
+/* Badge floats above track */
+.product-img-slider .product-badge-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+}
+
+/* Prev / Next arrows */
+.ps-prev,
+.ps-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.72);
+  border: 1px solid rgba(201, 150, 10, 0.35);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 6;
+  transition: background 0.22s, border-color 0.22s, opacity 0.22s;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+  opacity: 0;                        /* hidden until hover */
+}
+.ps-prev { left: 8px; }
+.ps-next { right: 8px; }
+
+/* Show arrows on card hover (desktop) */
+.product-card:hover .ps-prev,
+.product-card:hover .ps-next { opacity: 1; }
+
+/* Always visible on touch devices */
+@media (hover: none) {
+  .ps-prev, .ps-next { opacity: 1; }
+}
+
+.ps-prev:hover, .ps-next:hover {
+  background: var(--clr-accent);
+  border-color: var(--clr-accent);
+  color: #000;
+}
+.ps-prev svg, .ps-next svg { pointer-events: none; }
+
+/* Dot indicators */
+.ps-dots {
+  position: absolute;
+  bottom: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 6;
+}
+.ps-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.25s ease, background 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.ps-dot.ps-active {
+  width: 18px;
+  background: var(--clr-accent);
+}
+
+/* ─── Directors & Trust Badges (About section additions) ──── */
+.trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0;
+}
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(201,150,10,0.08);
+  border: 1px solid rgba(201,150,10,0.25);
+  border-radius: 4px;
+  padding: 7px 14px;
+  font-family: var(--ff-condensed);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+}
+.trust-badge svg { flex-shrink: 0; }
+
+.directors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 22px 0;
+}
+.director-card {
+  background: var(--clr-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color 0.3s;
+}
+.director-card:hover { border-color: var(--clr-accent); }
+.director-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(201,150,10,0.12);
+  border: 1px solid rgba(201,150,10,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-accent);
+  font-family: var(--ff-display);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+.director-name {
+  font-family: var(--ff-condensed);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--clr-text);
+  margin-bottom: 3px;
+}
+.director-title-lbl {
+  font-family: var(--ff-condensed);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+}
+.product-variants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+  margin-bottom: 14px;
+}
+.product-variant-tag {
+  font-family: var(--ff-condensed);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: rgba(201,150,10,0.08);
+  border: 1px solid rgba(201,150,10,0.18);
+  color: var(--clr-muted);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+@media (max-width: 520px) {
+  .directors-grid { grid-template-columns: 1fr; }
+}
